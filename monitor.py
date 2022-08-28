@@ -78,6 +78,8 @@ while True:
                     video_path, vsync='vfr', r=24.0).overwrite_output().run_async(pipe_stdin=True)
         )
         print("Detected, path %s" % video_path)
+    elif len(contours2) > 0:
+        initial_not_detect_time = None
 
     # ビデオ保存
     if video_path is not None:
