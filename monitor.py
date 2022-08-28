@@ -21,12 +21,12 @@ _, frame = cap.read()
 # ffmpeg参考資料
 #  https://qiita.com/mitayuki6/items/73943628b625e0b2ab30
 
-contours_area_threshold = 50000
+contours_area_threshold = 90000
 t_delta = datetime.timedelta(hours=9)
 JST = datetime.timezone(t_delta, 'JST')
 video_path = None
 initial_not_detect_time = None
-video_file_divide_seq = 5
+video_file_divide_sec = 10
 while True:
     # 1フレームずつ取得する。
     ret, frame = cap.read()
@@ -54,7 +54,7 @@ while True:
         now = time.time()
         if initial_not_detect_time is None:
             initial_not_detect_time = now
-        elif now - initial_not_detect_time > video_file_divide_seq:
+        elif now - initial_not_detect_time > video_file_divide_sec:
             video_path = None
             initial_not_detect_time = None
             try:
